@@ -314,6 +314,10 @@ public class NavigationActivity extends AppCompatActivity implements DefaultHard
         layout.setSideMenuVisible(animated, visible, side);
     }
 
+    public void setSideMenuEnabled(boolean enabled, Side side) {
+        layout.setSideMenuEnabled(enabled, side);
+    }
+
     public void selectTopTabByTabIndex(String screenInstanceId, int index) {
         layout.selectTopTabByTabIndex(screenInstanceId, index);
         modalController.selectTopTabByTabIndex(screenInstanceId, index);
@@ -413,6 +417,7 @@ public class NavigationActivity extends AppCompatActivity implements DefaultHard
     private void handleModalDismissedEvent() {
         if (!modalController.isShowing()) {
             layout.onModalDismissed();
+            OrientationHelper.setOrientation(this, AppStyle.appStyle.orientation);
         }
     }
 
