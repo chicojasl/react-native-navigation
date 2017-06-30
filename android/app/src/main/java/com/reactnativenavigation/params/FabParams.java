@@ -10,6 +10,7 @@ public class FabParams {
     public StyleParams.Color backgroundColor;
     public String collapsedId;
     public String expendedId;
+    public String checkKey;
     public String navigatorEventId;
     public List<FabActionParams> actions;
     public String screenInstanceId;
@@ -20,5 +21,13 @@ public class FabParams {
 
     public boolean isValid() {
         return collapsedId != null;
+    }
+
+    public boolean equalKey(FabParams fabParams) {
+        if(fabParams.checkKey == null || checkKey == null) {
+            return false;
+        }
+        
+        return checkKey.equals(fabParams.checkKey);
     }
 }
