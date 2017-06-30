@@ -218,6 +218,14 @@ public abstract class Screen extends RelativeLayout implements Subscriber {
     }
 
     public void setFab(FabParams fabParams) {
+        // FIXME: Validate checkKey
+        // It is a quick fix that avoid add the same fab params in the screen using redux
+        if(screenParams.fabParams != null && fabParams != null) {
+            if(screenParams.fabParams.equalKey(fabParams)) {
+                return;
+            }
+        }
+
         screenParams.fabParams = fabParams;
         if (isShown()) {
             EventBus.instance.post(new FabSetEvent(fabParams));
